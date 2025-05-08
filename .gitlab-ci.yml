@@ -1,6 +1,17 @@
 run_tests:
-    image: gradle:latest
-    before_script:
-        - chmod +x gradlew
-    script:
-        -./gradlew test
+  image: gradle:latest
+  before_script:
+    - chmod +x gradlew
+  script:
+    - ./gradlew test
+ 
+services:
+  - name: mongo:5.0
+    alias: my-db
+ 
+build_image:
+  image: gradle:latest
+  before_script:
+    - chmod +x gradlew
+  script:
+    - ./gradlew build
