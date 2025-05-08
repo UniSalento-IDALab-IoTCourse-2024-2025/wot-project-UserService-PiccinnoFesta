@@ -1,4 +1,6 @@
 run_tests:
     image: gradle:latest
+    before_script:
+        - chmod +x gradlew
     script:
         -./gradlew test
