@@ -1,0 +1,4 @@
+run_tests:
+    image: gradle:latest
+    script:
+        -./gradlew test
