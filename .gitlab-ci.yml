@@ -1,17 +1,36 @@
+stages:
+  - test
+  - build
+  - deploy
+
 run_tests:
+  stage: test
   image: gradle:latest
   before_script:
     - chmod +x gradlew
   script:
     - ./gradlew test
- 
+
 services:
   - name: mongo:5.0
     alias: my-db
- 
+
 build_image:
+  stage: build
   image: gradle:latest
   before_script:
     - chmod +x gradlew
   script:
     - ./gradlew build
+
+deploy:
+  stage: deploy
+  image: gradle:latest
+  before_script:
+    - chmod 600 $AWS_SECRET_ACCESS_KEY
+    - chmod +x gradlew
+    - ./gradlew bootJar
+  script:
+    - scp -o StrictHostKeyChecking=no -i $AWS_SECRET_ACCESS_KEY build/libs/UserServiceProject-0.0.1-SNAPSHOT.jar ubuntu@54.157.201.121:/home/ubuntu
+    - scp -o StrictHostKeyChecking=no -i $AWS_SECRET_ACCESS_KEY docker-compose.yml ubuntu54.157.201.121:/home/ubuntu/docker-compose.yml
+    - ssh -o StrictHostKeyChecking=no -i $AWS_SECRET_ACCESS_KEY ubuntu@54.157.201.121 "sudo docker kill mysbaimage; sudo docker kill mongodbimage; cd PAS2425; sudo docker compose up -d"
