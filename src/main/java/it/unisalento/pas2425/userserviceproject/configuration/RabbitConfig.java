@@ -4,7 +4,10 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+
+//rimuovo @Configuration da qui e dalle altre classi legate a rabbit perchè nel CI/CD non funziona, perchè c'è un rabbit
+//che non trova
+//@Configuration
 public class RabbitConfig {
     public static final String QUEUE_NAME = "simple-queue";
 

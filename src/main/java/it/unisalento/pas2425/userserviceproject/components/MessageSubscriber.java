@@ -6,7 +6,7 @@ import it.unisalento.pas2425.userserviceproject.configuration.RabbitTopicConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MessageSubscriber {
 
 

@@ -4,7 +4,7 @@ import it.unisalento.pas2425.userserviceproject.configuration.RabbitConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MessageListener {
 
     @RabbitListener(queues = RabbitConfig.QUEUE_NAME)

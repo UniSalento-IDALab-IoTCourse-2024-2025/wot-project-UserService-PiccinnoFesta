@@ -4,7 +4,7 @@ import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+
 public class RabbitFanoutConfig {
 
     public static final String FANOUT_EXCHANGE_NAME = "fanout-exchange";
