@@ -1,5 +1,6 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
+import it.unisalento.pas2425.userserviceproject.configuration.RabbitConfig;
 import it.unisalento.pas2425.userserviceproject.di.IPaymentService;
 import it.unisalento.pas2425.userserviceproject.domain.User;
 import it.unisalento.pas2425.userserviceproject.dto.*;
@@ -15,12 +16,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
 
 import java.util.*;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -111,6 +117,13 @@ public class UserRestController {
         claims.put("userId",user.get().getId());
         final String jwt = jwtUtilities.generateToken(user.get().getEmail(), claims);
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
+    }
+
+
+    @PostMapping("/codaSemplice")
+    public String sendMessage(@RequestParam String message) {
+        rabbitTemplate.convertAndSend(RabbitConfig.QUEUE_NAME, message);
+        return "Messaggio inviato: " + message;
     }
 
 }
