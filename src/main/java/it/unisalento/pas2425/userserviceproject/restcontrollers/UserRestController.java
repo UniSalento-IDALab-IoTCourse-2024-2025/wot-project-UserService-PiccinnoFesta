@@ -25,8 +25,6 @@ import java.util.*;
 @RequestMapping("/api/users")
 public class UserRestController {
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -120,10 +118,6 @@ public class UserRestController {
     }
 
 
-    @PostMapping("/codaSemplice")
-    public String sendMessage(@RequestParam String message) {
-        rabbitTemplate.convertAndSend(RabbitConfig.QUEUE_NAME, message);
-        return "Messaggio inviato: " + message;
-    }
+
 
 }
