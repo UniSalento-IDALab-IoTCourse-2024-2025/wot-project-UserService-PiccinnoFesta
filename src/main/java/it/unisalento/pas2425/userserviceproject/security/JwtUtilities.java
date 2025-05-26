@@ -33,6 +33,11 @@ public class JwtUtilities {
         return extractClaim(token, Claims::getExpiration);
     }
 
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
+    }
+
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -50,8 +55,8 @@ public class JwtUtilities {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(String username, Map<String, Object> claims) {
-
+    public String generateToken(String username, Map<String, Object> claims,String role) {
+        claims.put("role", role);
         return createToken(claims, username);
     }
 

@@ -113,7 +113,7 @@ public class UserRestController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId",user.get().getId());
-        final String jwt = jwtUtilities.generateToken(user.get().getEmail(), claims);
+        final String jwt = jwtUtilities.generateToken(user.get().getEmail(), claims,user.get().getRole().name() );
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 

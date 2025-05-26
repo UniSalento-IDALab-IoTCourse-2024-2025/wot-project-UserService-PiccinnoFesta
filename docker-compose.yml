@@ -1,3 +1,5 @@
+version: '3.8' # o la tua versione di docker-compose
+
 services:
 
   my-sba:
@@ -10,7 +12,8 @@ services:
     expose:
       - "8000"
     depends_on:
-      - my-db
+      my-db:
+        condition: service_healthy # <--- Dipendenza con controllo dello stato di salute
     networks:
       - shared-net
     volumes:
@@ -26,6 +29,12 @@ services:
       - 27017:27017
     networks:
       - shared-net
+    healthcheck: # <--- Aggiungiamo un health check
+      test: [ "CMD", "mongo", "--eval", "db.runCommand('ping').ok" ] # <--- CAMBIATO DA mongosh A mongo QUI!
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s # Puoi provare anche 30s o 40s se l'errore persiste, ma 20s di solito basta.
 
 networks:
   shared-net:

@@ -49,6 +49,9 @@ public class UserRegistrationRestController {
         user.setSurname(userDto.getCognome());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder().encode(userDto.getPassword()));
+        user.setRole(userDto.getRuolo());
+
+        //inviare messaggio a wallet per creare un wallet
 
         user = userRepository.save(user); //giochetto serve per generare id e salvarlo
         userDto.setId(user.getId());
