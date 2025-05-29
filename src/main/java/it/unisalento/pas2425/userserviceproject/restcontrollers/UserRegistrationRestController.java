@@ -1,6 +1,7 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
 import it.unisalento.pas2425.userserviceproject.di.IPaymentService;
+import it.unisalento.pas2425.userserviceproject.domain.Role;
 import it.unisalento.pas2425.userserviceproject.domain.User;
 import it.unisalento.pas2425.userserviceproject.dto.RegistrationResultDTO;
 import it.unisalento.pas2425.userserviceproject.dto.UserDTO;
@@ -49,7 +50,7 @@ public class UserRegistrationRestController {
         user.setSurname(userDto.getCognome());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder().encode(userDto.getPassword()));
-        user.setRole(userDto.getRuolo());
+        user.setRole(Role.CLIENT);
 
         //inviare messaggio a wallet per creare un wallet
 

@@ -9,14 +9,14 @@ public class UserDTO {
     private String cognome;
     private String email;
     private String password;
-    private Role ruolo;
+    //private Role ruolo;
 
-    public Role getRuolo() {
-        return ruolo;
-    }
-    public void setRuolo(Role ruolo) {
-        this.ruolo = ruolo;
-    }
+//    public Role getRuolo() {
+//        return ruolo;
+//    }
+//    public void setRuolo(Role ruolo) {
+//        this.ruolo = ruolo;
+//    }
 
     public String getPassword() {
         return password;
