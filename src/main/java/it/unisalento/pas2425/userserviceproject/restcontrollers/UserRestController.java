@@ -118,7 +118,7 @@ public class UserRestController {
 
 
 
-    @RequestMapping(value="/{id}/setVehicle", method = RequestMethod.PATCH)
+    @RequestMapping(value="/setVehicle/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<?> setVehicle(@PathVariable String id,@RequestBody String vehicleType ) throws UserNotFoundException{
         Optional<User> optionalUser = userRepository.findById(id);
         if(optionalUser.isEmpty()){
