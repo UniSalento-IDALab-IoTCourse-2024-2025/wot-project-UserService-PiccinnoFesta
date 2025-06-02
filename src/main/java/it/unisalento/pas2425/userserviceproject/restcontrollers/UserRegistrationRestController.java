@@ -10,6 +10,7 @@ import it.unisalento.pas2425.userserviceproject.exceptions.UserNotFoundException
 import it.unisalento.pas2425.userserviceproject.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class UserRegistrationRestController {
                     produces = MediaType.APPLICATION_JSON_VALUE,
                     consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public RegistrationResultDTO save(@RequestBody UserDTO userDto) {
+    public ResponseEntity<?> save(@RequestBody UserDTO userDto) {
 
         RegistrationResultDTO resultDTO = new RegistrationResultDTO();
 
@@ -42,7 +43,7 @@ public class UserRegistrationRestController {
         if(!existingUser.isEmpty()){
             resultDTO.setResult(RegistrationResultDTO.EMAIL_ALREADY_EXIST);
             resultDTO.setMessage("La mail è già associata ad un altro utente");
-            return resultDTO;
+            return ResponseEntity.badRequest().body(resultDTO);
         }
 
         User user = new User();
@@ -61,7 +62,7 @@ public class UserRegistrationRestController {
         resultDTO.setResult(RegistrationResultDTO.OK);
         resultDTO.setUser(userDto);
 
-        return resultDTO;
+        return ResponseEntity.ok(resultDTO);
     }
 
 
