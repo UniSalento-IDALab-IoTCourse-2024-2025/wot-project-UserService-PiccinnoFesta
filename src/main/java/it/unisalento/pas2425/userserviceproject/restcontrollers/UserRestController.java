@@ -88,6 +88,7 @@ public class UserRestController {
         userDto.setNome(user.get().getName());
         userDto.setCognome(user.get().getSurname());
         userDto.setEmail(user.get().getEmail());
+        userDto.setVehicle(user.get().getVehicle() );
 
         //user.get()
 
@@ -116,15 +117,7 @@ public class UserRestController {
     }
 
 
-    @RequestMapping(value="/{id}/getVehicle", method = RequestMethod.GET)
-    public ResponseEntity<?> getVehicle(@PathVariable String id) throws UserNotFoundException{
-        Optional<User> user = userRepository.findById(id);
-        if(user.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        String vehicleType = user.get().getVehicle();
-        return ResponseEntity.ok(vehicleType);
-    }
+
     @RequestMapping(value="/{id}/setVehicle", method = RequestMethod.PATCH)
     public ResponseEntity<?> setVehicle(@PathVariable String id,@RequestBody String vehicleType ) throws UserNotFoundException{
         Optional<User> optionalUser = userRepository.findById(id);

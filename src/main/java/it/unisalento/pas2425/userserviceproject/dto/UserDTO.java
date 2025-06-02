@@ -8,6 +8,7 @@ public class UserDTO {
     private String nome;
     private String cognome;
     private String email;
+    private String vehicle;
     private String password;
     //private Role ruolo;
 
@@ -18,9 +19,19 @@ public class UserDTO {
 //        this.ruolo = ruolo;
 //    }
 
+
+    public String getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(String vehicle) {
+        this.vehicle = vehicle;
+    }
+
     public String getPassword() {
         return password;
     }
+
 
     public void setPassword(String password) {
         this.password = password;
