@@ -116,6 +116,31 @@ public class UserRestController {
     }
 
 
+    @RequestMapping(value="/{id}/getVehicle", method = RequestMethod.GET)
+    public ResponseEntity<?> getVehicle(@PathVariable String id) throws UserNotFoundException{
+        Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        String vehicleType = user.get().getVehicle();
+        return ResponseEntity.ok(vehicleType);
+    }
+    @RequestMapping(value="/{id}/setVehicle", method = RequestMethod.PATCH)
+    public ResponseEntity<?> setVehicle(@PathVariable String id,@RequestBody String vehicleType ) throws UserNotFoundException{
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        User user = optionalUser.get();
+        user.setVehicle(vehicleType);
+        userRepository.save(user);
+
+        return ResponseEntity.ok("Vehicle set correctly");
+    }
+
+
+
+
 
 
 }

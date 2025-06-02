@@ -18,9 +18,21 @@ public class User {
     private String password;
 
     private Role role;
+
+    private String vehicle;
+
+    public String getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(String vehicle) {
+        this.vehicle = vehicle;
+    }
+
     public Role getRole() {
         return role;
     }
+
     public void setRole(Role role) {
         this.role = role;
     }

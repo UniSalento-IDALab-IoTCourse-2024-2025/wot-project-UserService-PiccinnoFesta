@@ -58,8 +58,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/authenticate","/api/registration/").permitAll()
                         .requestMatchers("/api/users/").hasRole("ADMIN")
+                        .requestMatchers("/api/users/authenticate","/api/registration/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
