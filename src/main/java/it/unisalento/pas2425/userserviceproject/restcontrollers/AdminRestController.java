@@ -49,7 +49,7 @@ public class AdminRestController {
         userRepository.save(newAdmin);
 
 
-        rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.ADMIN_UPDATE_EXCHANGE_NAME,"", newAdmin.getId());
+        rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.ROUTING_ADMIN_UPDATE,"", newAdmin.getId());
         System.out.println("UserService: Published Admin User ID (as String): " + newAdmin.getId() + " on Admin Update Exchange");
         return ResponseEntity.ok("Admin cambiato con successo");
     }
