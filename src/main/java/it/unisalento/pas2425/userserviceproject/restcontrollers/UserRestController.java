@@ -124,6 +124,8 @@ public class UserRestController {
         if(optionalUser.isEmpty()){
             return ResponseEntity.notFound().build();
         }
+
+
         User user = optionalUser.get();
         user.setVehicle(vehicleType);
         userRepository.save(user);

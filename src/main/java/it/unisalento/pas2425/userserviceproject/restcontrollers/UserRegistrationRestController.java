@@ -8,6 +8,7 @@ import it.unisalento.pas2425.userserviceproject.dto.UserDTO;
 import it.unisalento.pas2425.userserviceproject.dto.UsersListDTO;
 import it.unisalento.pas2425.userserviceproject.exceptions.UserNotFoundException;
 import it.unisalento.pas2425.userserviceproject.repositories.UserRepository;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,8 @@ public class UserRegistrationRestController {
     UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
 
     @RequestMapping(value="/",
@@ -54,6 +57,9 @@ public class UserRegistrationRestController {
         user.setRole(Role.CLIENT);
 
         //inviare messaggio a wallet per creare un wallet
+        //rabbitTemplate.convertAndSend()
+
+
 
         user = userRepository.save(user); //giochetto serve per generare id e salvarlo
         userDto.setId(user.getId());

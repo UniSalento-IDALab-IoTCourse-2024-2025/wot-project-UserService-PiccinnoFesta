@@ -1,12 +1,10 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
-import com.rabbitmq.client.Return;
-import it.unisalento.pas2425.userserviceproject.configuration.RabbitAdminFanoutConfig;
+import it.unisalento.pas2425.userserviceproject.configuration.RabbitUserInteractionTopicConfig;
 import it.unisalento.pas2425.userserviceproject.domain.Role;
 import it.unisalento.pas2425.userserviceproject.domain.User;
 import it.unisalento.pas2425.userserviceproject.repositories.UserRepository;
 import it.unisalento.pas2425.userserviceproject.security.JwtUtilities;
-import org.springframework.amqp.rabbit.core.RabbitAdminEvent;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +49,7 @@ public class AdminRestController {
         userRepository.save(newAdmin);
 
 
-        rabbitTemplate.convertAndSend(RabbitAdminFanoutConfig.ADMIN_UPDATE_EXCHANGE_NAME,"", newAdmin.getId());
+        rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.ADMIN_UPDATE_EXCHANGE_NAME,"", newAdmin.getId());
         System.out.println("UserService: Published Admin User ID (as String): " + newAdmin.getId() + " on Admin Update Exchange");
         return ResponseEntity.ok("Admin cambiato con successo");
     }
