@@ -1,5 +1,6 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
+import it.unisalento.pas2425.userserviceproject.configuration.RabbitUserInteractionTopicConfig;
 import it.unisalento.pas2425.userserviceproject.di.IPaymentService;
 import it.unisalento.pas2425.userserviceproject.domain.Role;
 import it.unisalento.pas2425.userserviceproject.domain.User;
@@ -58,6 +59,9 @@ public class UserRegistrationRestController {
 
         //inviare messaggio a wallet per creare un wallet
         //rabbitTemplate.convertAndSend()
+        rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.INTERACTION_EXCHANGE
+                ,RabbitUserInteractionTopicConfig.ROUTING_CREATE_WALLET,
+                user.getId());
 
 
 

@@ -29,14 +29,9 @@ public class RabbitUserInteractionTopicConfig {
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate(
-            ConnectionFactory cf,
-            MessageConverter jacksonConverter
-    ) {
-        RabbitTemplate template = new RabbitTemplate(cf);
-        template.setMessageConverter(jacksonConverter);
-        // Imposti l’exchange di default sul template
-        template.setExchange(INTERACTION_EXCHANGE);
-        return template;
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, MessageConverter jsonMessageConverter) {
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(jsonMessageConverter);
+        return rabbitTemplate;
     }
 }
