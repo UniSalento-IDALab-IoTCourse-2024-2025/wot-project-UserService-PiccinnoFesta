@@ -57,17 +57,17 @@ public class UserRegistrationRestController {
         user.setPassword(passwordEncoder().encode(userDto.getPassword()));
         user.setRole(Role.CLIENT);
 
+
+        System.out.println("dentro la chiamata");
+
+        user = userRepository.save(user); //giochetto serve per generare id e salvarlo
+        userDto.setId(user.getId());
+
         //inviare messaggio a wallet per creare un wallet
         //rabbitTemplate.convertAndSend()
         rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.INTERACTION_EXCHANGE
                 ,RabbitUserInteractionTopicConfig.ROUTING_CREATE_WALLET,
                 user.getId());
-
-
-
-        user = userRepository.save(user); //giochetto serve per generare id e salvarlo
-        userDto.setId(user.getId());
-
 
         resultDTO.setResult(RegistrationResultDTO.OK);
         resultDTO.setUser(userDto);
