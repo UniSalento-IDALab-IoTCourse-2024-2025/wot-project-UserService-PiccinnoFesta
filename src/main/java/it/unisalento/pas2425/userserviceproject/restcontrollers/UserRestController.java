@@ -1,5 +1,6 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
+import it.unisalento.pas2425.userserviceproject.configuration.RabbitUserInteractionTopicConfig;
 import it.unisalento.pas2425.userserviceproject.di.IPaymentService;
 import it.unisalento.pas2425.userserviceproject.domain.Role;
 import it.unisalento.pas2425.userserviceproject.domain.User;
@@ -7,7 +8,9 @@ import it.unisalento.pas2425.userserviceproject.dto.*;
 import it.unisalento.pas2425.userserviceproject.exceptions.UserNotFoundException;
 import it.unisalento.pas2425.userserviceproject.repositories.UserRepository;
 import it.unisalento.pas2425.userserviceproject.security.JwtUtilities;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,6 +36,9 @@ public class UserRestController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
     @Autowired
     IPaymentService creditCardPaymentService;
@@ -137,15 +143,25 @@ public class UserRestController {
 
     //backdoor per aggiungere un admin, da rimuovere poi in produzione
     @PostMapping(value = "/setAsAdmin")
-    public ResponseEntity<String> setAsAdmin(@RequestBody UserDTO userDTO) throws UserNotFoundException {
-        Optional<User> optionalUser = userRepository.findByEmail(userDTO.getEmail());
-        if (optionalUser.isEmpty()) {
+    public ResponseEntity<String> setAsAdmin(@RequestHeader("Authorization") String jwtToken) throws UserNotFoundException {
+
+        String jwt = jwtToken.startsWith("Bearer ") ? jwtToken.substring(7) : jwtToken;
+        String userIdFromToken= jwtUtilities.extractClaim(jwt, claims -> claims.get("userId", String.class));;
+
+
+
+        Optional<User> optionalUser = userRepository.findById(userIdFromToken);
+        if(optionalUser.isEmpty()){
             return ResponseEntity.notFound().build();
         }
         User user = optionalUser.get();
         user.setRole(Role.ADMIN);
         userRepository.save(user);
 
+        //faccio aggiornare l'id admin al wallet
+        rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.INTERACTION_EXCHANGE
+                ,RabbitUserInteractionTopicConfig.ROUTING_ADMIN_UPDATE,
+                user.getId());
         return  ResponseEntity.ok().body("User");
     }
 
