@@ -91,7 +91,8 @@ public class UserRestController {
 
         UserDTO userDto = new UserDTO();
 
-        userDto.setId(user.get().getId());
+        //non dovrebbe esserci bisogno di ritornarlo
+        //userDto.setId(user.get().getId());
         userDto.setNome(user.get().getName());
         userDto.setCognome(user.get().getSurname());
         userDto.setEmail(user.get().getEmail());
