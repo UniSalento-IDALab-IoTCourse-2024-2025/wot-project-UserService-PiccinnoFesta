@@ -1,6 +1,7 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
 import it.unisalento.pas2425.userserviceproject.di.IPaymentService;
+import it.unisalento.pas2425.userserviceproject.domain.Role;
 import it.unisalento.pas2425.userserviceproject.domain.User;
 import it.unisalento.pas2425.userserviceproject.dto.*;
 import it.unisalento.pas2425.userserviceproject.exceptions.UserNotFoundException;
@@ -132,6 +133,22 @@ public class UserRestController {
 
         return ResponseEntity.ok("Vehicle set correctly");
     }
+
+
+    //backdoor per aggiungere un admin, da rimuovere poi in produzione
+    @PostMapping(value = "/setAsAdmin")
+    public ResponseEntity<String> setAsAdmin(@RequestBody UserDTO userDTO) throws UserNotFoundException {
+        Optional<User> optionalUser = userRepository.findByEmail(userDTO.getEmail());
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        User user = optionalUser.get();
+        user.setRole(Role.ADMIN);
+        userRepository.save(user);
+
+        return  ResponseEntity.ok().body("User");
+    }
+
 
 
 
