@@ -22,7 +22,7 @@ public class AdminRestController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @PostMapping("/changeAdmin/{id}")
+    @PostMapping("/changeAdmin/{newAdminId}")
     public ResponseEntity<String> changeAdmin(@PathVariable String newAdminId, @RequestHeader("Authorization") String jwtToken){
 
         String jwt = jwtToken.startsWith("Bearer ") ? jwtToken.substring(7) : jwtToken;
