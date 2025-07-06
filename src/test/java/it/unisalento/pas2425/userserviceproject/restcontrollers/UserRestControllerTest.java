@@ -108,7 +108,7 @@ public class UserRestControllerTest {
 
     @Test
     @DisplayName("Dovrebbe trovare l'utente per ID")
-    @WithMockUser(roles = "CLIENT") // Aggiunto per simulare un utente autenticato con ruolo CLIENT
+    @WithMockUser(roles = "CLIENT") // Aggiunto per simulare un utente autenticato con ruolo USER
     void shouldFindUserById() throws Exception {
         when(userRepository.findById(testUser.getId())).thenReturn(Optional.of(testUser));
 

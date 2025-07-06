@@ -48,14 +48,8 @@ public class UserRestController {
                     produces = MediaType.APPLICATION_JSON_VALUE)
     public UsersListDTO getAll() {
 
-        creditCardPaymentService.initialize();
-/*
-        UserDTO userDto = new UserDTO();
-        userDto.setId(111);
-        userDto.setNome("Paolo");
-        userDto.setCognome("Bianchi");
-        userDto.setEmail("paolo.bianchi@gmail.com");
-*/
+
+
         List<UserDTO> list = new ArrayList<UserDTO>();
         List<User> users = userRepository.findAll();
 
@@ -82,7 +76,6 @@ public class UserRestController {
     )
     public UserDTO findById(@PathVariable String id) throws UserNotFoundException{
 
-        //mi evita ci sia un user = Null, ma anche se non lo trova per quell'id, istanzia qualcosa
         Optional<User> user = userRepository.findById(id);
 
         if(user.isEmpty()){

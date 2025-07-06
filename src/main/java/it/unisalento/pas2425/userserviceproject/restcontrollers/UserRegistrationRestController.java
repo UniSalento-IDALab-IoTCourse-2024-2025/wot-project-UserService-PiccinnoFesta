@@ -64,7 +64,6 @@ public class UserRegistrationRestController {
         userDto.setId(user.getId());
 
         //inviare messaggio a wallet per creare un wallet
-        //rabbitTemplate.convertAndSend()
         rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.INTERACTION_EXCHANGE
                 ,RabbitUserInteractionTopicConfig.ROUTING_CREATE_WALLET,
                 user.getId());
