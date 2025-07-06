@@ -1,0 +1,51 @@
+Basic COCOMO, using software project class: Organic
+Total lines of code  = 2370 (2,370 kLOC)
+Effort Applied   (E) =   5,939 [person-months] (2,4 * kLOC ^ 1,05)
+Development Time (D) =   4,920 [months] (2,5 * E ^ 0,38)
+People Required  (P) =   1,207 [number of] (E / D)
+
+/src/main/java/it/unisalento/pas2425/userserviceproject/di/IPaymentService.java: 4 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/di/PaypalPaymentService.java: 9 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/di/CreditCardPaymentService.java: 9 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/dto/UserDTO.java: 53 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/dto/LoginDTO.java: 17 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/dto/UsersListDTO.java: 11 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/dto/RegistrationResultDTO.java: 27 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/dto/AuthenticationResponseDTO.java: 13 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/domain/Role.java: 4 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/domain/User.java: 56 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/service/CustomUserDetailsService.java: 28 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/security/JwtUtilities.java: 63 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/security/SecurityConstants.java: 5 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/security/JwtAuthenticationFilter.java: 56 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/components/MessageListener.java: 8 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/components/MessageSubscriber.java: 16 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/exceptions/UserNotFoundException.java: 6 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/controllers/HomeController.java: 10 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/repositories/UserRepository.java: 11 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/configuration/SecurityConfig.java: 94 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/configuration/RabbitTopicConfig.java: 29 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/configuration/RabbitFanoutConfig.java: 29 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/configuration/RabbitUserInteractionTopicConfig.java: 30 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/restcontrollers/UserRestController.java: 130 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/restcontrollers/AdminRestController.java: 46 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/restcontrollers/UserRegistrationRestController.java: 61 LOC
+/src/main/java/it/unisalento/pas2425/userserviceproject/UserServiceProjectApplication.java: 9 LOC
+/src/main/resources/static/home.html: 10 LOC
+/src/main/resources/static/index.html: 10 LOC
+/src/test/java/it/unisalento/pas2425/userserviceproject/restcontrollers/UserRestControllerTest.java: 229 LOC
+/src/test/java/it/unisalento/pas2425/userserviceproject/restcontrollers/UserRegistrationRestControllerTest.java: 107 LOC
+/build/reports/tests/test/js/report.js: 149 LOC
+/build/reports/tests/test/css/style.css: 66 LOC
+/build/reports/tests/test/css/base-style.css: 148 LOC
+/build/reports/tests/test/classes/it.unisalento.pas2425.userserviceproject.restcontrollers.UserRestControllerTest.html: 231 LOC
+/build/reports/tests/test/classes/it.unisalento.pas2425.userserviceproject.restcontrollers.UserRegistrationRestControllerTest.html: 169 LOC
+/build/reports/tests/test/packages/it.unisalento.pas2425.userserviceproject.restcontrollers.html: 113 LOC
+/build/reports/tests/test/index.html: 143 LOC
+/build/resources/main/static/home.html: 10 LOC
+/build/resources/main/static/index.html: 10 LOC
+/build/test-results/test/TEST-it.unisalento.pas2425.userserviceproject.restcontrollers.UserRestControllerTest.xml: 82 LOC
+/build/test-results/test/TEST-it.unisalento.pas2425.userserviceproject.restcontrollers.UserRegistrationRestControllerTest.xml: 59 LOC
+
+Excluded files in:
+	/.idea/

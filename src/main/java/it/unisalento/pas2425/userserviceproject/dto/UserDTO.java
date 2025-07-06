@@ -10,15 +10,16 @@ public class UserDTO {
     private String email;
     private String vehicle;
     private String password;
-    //private Role ruolo;
+    private Role role;
 
-//    public Role getRuolo() {
-//        return ruolo;
-//    }
-//    public void setRuolo(Role ruolo) {
-//        this.ruolo = ruolo;
-//    }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public String getVehicle() {
         return vehicle;

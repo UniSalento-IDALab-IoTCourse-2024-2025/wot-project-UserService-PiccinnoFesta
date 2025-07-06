@@ -26,7 +26,7 @@ services:
     platform: linux/amd64
     container_name: mongodbimage
     ports:
-      - 27017:27017
+      - 27011:27017
     networks:
       - shared-net
     healthcheck: # <--- Aggiungiamo un health check

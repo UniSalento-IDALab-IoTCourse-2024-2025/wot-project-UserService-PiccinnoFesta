@@ -97,6 +97,7 @@ public class UserRestController {
         userDto.setCognome(user.get().getSurname());
         userDto.setEmail(user.get().getEmail());
         userDto.setVehicle(user.get().getVehicle() );
+        userDto.setRole(user.get().getRole());
 
         //user.get()
 
