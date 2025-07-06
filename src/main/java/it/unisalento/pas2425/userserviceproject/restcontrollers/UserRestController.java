@@ -137,29 +137,14 @@ public class UserRestController {
     }
 
 
-    //backdoor per aggiungere un admin, da rimuovere poi in produzione
-    @PostMapping(value = "/setAsAdmin")
-    public ResponseEntity<String> setAsAdmin(@RequestHeader("Authorization") String jwtToken) throws UserNotFoundException {
-
-        String jwt = jwtToken.startsWith("Bearer ") ? jwtToken.substring(7) : jwtToken;
-        String userIdFromToken= jwtUtilities.extractClaim(jwt, claims -> claims.get("userId", String.class));;
 
 
 
-        Optional<User> optionalUser = userRepository.findById(userIdFromToken);
-        if(optionalUser.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        User user = optionalUser.get();
-        user.setRole(Role.ADMIN);
-        userRepository.save(user);
 
-        //faccio aggiornare l'id admin al wallet
-        rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.INTERACTION_EXCHANGE
-                ,RabbitUserInteractionTopicConfig.ROUTING_ADMIN_UPDATE,
-                user.getId());
-        return  ResponseEntity.ok().body("User");
-    }
+
+
+
+
 
 
 
