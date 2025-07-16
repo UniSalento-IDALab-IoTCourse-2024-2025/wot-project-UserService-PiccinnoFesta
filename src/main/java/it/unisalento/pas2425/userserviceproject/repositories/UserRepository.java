@@ -1,6 +1,5 @@
 package it.unisalento.pas2425.userserviceproject.repositories;
 
-import it.unisalento.pas2425.userserviceproject.domain.Role;
 import it.unisalento.pas2425.userserviceproject.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -13,5 +12,4 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     List<User> findByNameAndSurname(String nome, String surname);
 
-    List<User> findByRole(Role role);
 }

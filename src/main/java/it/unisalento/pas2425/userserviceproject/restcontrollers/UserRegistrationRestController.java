@@ -1,8 +1,6 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
-import it.unisalento.pas2425.userserviceproject.configuration.RabbitUserInteractionTopicConfig;
-import it.unisalento.pas2425.userserviceproject.di.IPaymentService;
-import it.unisalento.pas2425.userserviceproject.domain.Role;
+
 import it.unisalento.pas2425.userserviceproject.domain.User;
 import it.unisalento.pas2425.userserviceproject.dto.RegistrationResultDTO;
 import it.unisalento.pas2425.userserviceproject.dto.UserDTO;
@@ -55,7 +53,6 @@ public class UserRegistrationRestController {
         user.setSurname(userDto.getCognome());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder().encode(userDto.getPassword()));
-        user.setRole(Role.CLIENT);
 
 
         System.out.println("dentro la chiamata");
@@ -63,10 +60,7 @@ public class UserRegistrationRestController {
         user = userRepository.save(user); //giochetto serve per generare id e salvarlo
         userDto.setId(user.getId());
 
-        //inviare messaggio a wallet per creare un wallet
-        rabbitTemplate.convertAndSend(RabbitUserInteractionTopicConfig.INTERACTION_EXCHANGE
-                ,RabbitUserInteractionTopicConfig.ROUTING_CREATE_WALLET,
-                user.getId());
+
 
         resultDTO.setResult(RegistrationResultDTO.OK);
         resultDTO.setUser(userDto);

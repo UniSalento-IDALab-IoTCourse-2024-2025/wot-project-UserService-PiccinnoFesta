@@ -1,5 +1,0 @@
-package it.unisalento.pas2425.userserviceproject.domain;
-
-public enum Role {
-    CLIENT, ADMIN
-}

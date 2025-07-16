@@ -1,8 +1,6 @@
 package it.unisalento.pas2425.userserviceproject.restcontrollers;
 
-import it.unisalento.pas2425.userserviceproject.configuration.RabbitUserInteractionTopicConfig;
-import it.unisalento.pas2425.userserviceproject.di.IPaymentService;
-import it.unisalento.pas2425.userserviceproject.domain.Role;
+
 import it.unisalento.pas2425.userserviceproject.domain.User;
 import it.unisalento.pas2425.userserviceproject.dto.*;
 import it.unisalento.pas2425.userserviceproject.exceptions.UserNotFoundException;
@@ -40,8 +38,7 @@ public class UserRestController {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    @Autowired
-    IPaymentService creditCardPaymentService;
+
 
     @RequestMapping(value="/",
                     method = RequestMethod.GET,
@@ -90,7 +87,6 @@ public class UserRestController {
         userDto.setCognome(user.get().getSurname());
         userDto.setEmail(user.get().getEmail());
         userDto.setVehicle(user.get().getVehicle() );
-        userDto.setRole(user.get().getRole());
 
         //user.get()
 
@@ -114,27 +110,12 @@ public class UserRestController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId",user.get().getId());
-        System.out.println(user.get().getRole().name());
-        final String jwt = jwtUtilities.generateToken(user.get().getEmail(), claims,user.get().getRole().name() );
+        final String jwt = jwtUtilities.generateToken(user.get().getEmail(), claims );
         return ResponseEntity.ok(new AuthenticationResponseDTO(jwt));
     }
 
 
 
-    @RequestMapping(value="/setVehicle/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity<?> setVehicle(@PathVariable String id,@RequestBody String vehicleType ) throws UserNotFoundException{
-        Optional<User> optionalUser = userRepository.findById(id);
-        if(optionalUser.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-
-
-        User user = optionalUser.get();
-        user.setVehicle(vehicleType);
-        userRepository.save(user);
-
-        return ResponseEntity.ok("Vehicle set correctly");
-    }
 
 
 

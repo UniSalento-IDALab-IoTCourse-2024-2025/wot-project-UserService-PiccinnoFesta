@@ -1,6 +1,5 @@
 package it.unisalento.pas2425.userserviceproject.dto;
 
-import it.unisalento.pas2425.userserviceproject.domain.Role;
 
 public class UserDTO {
 
@@ -10,16 +9,9 @@ public class UserDTO {
     private String email;
     private String vehicle;
     private String password;
-    private Role role;
 
 
-    public Role getRole() {
-        return role;
-    }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
 
     public String getVehicle() {
         return vehicle;

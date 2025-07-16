@@ -37,13 +37,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String username = null;
         String jwt = null;
-        String role = null;
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
             username = jwtUtilities.extractUsername(jwt);
 
-            role = jwtUtilities.extractRole(jwt);
 
         }
 
@@ -54,9 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             List<GrantedAuthority> authorities = new ArrayList<>();
 
-            if(role != null) {
-                authorities.add(new SimpleGrantedAuthority("ROLE_"+role));
-            }
+
             authorities.addAll(userDetails.getAuthorities());
 
 
