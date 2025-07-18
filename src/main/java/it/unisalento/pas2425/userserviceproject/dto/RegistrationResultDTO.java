@@ -11,7 +11,7 @@ package it.unisalento.pas2425.userserviceproject.dto;public class RegistrationRe
 
     private String message;
 
-    private UserDTO user;
+    private DoctorDTO user;
 
     public int getResult() {
         return result;
@@ -29,11 +29,11 @@ package it.unisalento.pas2425.userserviceproject.dto;public class RegistrationRe
         this.message = message;
     }
 
-    public UserDTO getUser() {
+    public DoctorDTO getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(DoctorDTO user) {
         this.user = user;
     }
 }
