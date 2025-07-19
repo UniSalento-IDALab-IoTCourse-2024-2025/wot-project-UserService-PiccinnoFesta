@@ -66,7 +66,7 @@ public class PatientRestController {
             patientDTO.setId(patient.getId());
             patientDTO.setName(patient.getName());
             patientDTO.setSurname(patient.getSurname());
-            patientDTO.setSex(patient.getSex());
+            patientDTO.setGender(patient.getGender());
             patientDTO.setAge(patient.getAge());
             patientDTO.setTraits(patient.getTraits());
             patientDTO.setHeight(patient.getHeight());
@@ -116,7 +116,7 @@ public class PatientRestController {
         patientDTO.setId(patient.getId());
         patientDTO.setName(patient.getName());
         patientDTO.setSurname(patient.getSurname());
-        patientDTO.setSex(patient.getSex());
+        patientDTO.setGender(patient.getGender());
         patientDTO.setAge(patient.getAge());
         patientDTO.setTraits(patient.getTraits());
         patientDTO.setHeight(patient.getHeight());
@@ -152,7 +152,7 @@ public class PatientRestController {
         patient.setDiagnosis(patientDTO.getDiagnosis());
         patient.setHeight(patientDTO.getHeight());
         patient.setWeight(patientDTO.getWeight());
-        patient.setSex(patientDTO.getSex());
+        patient.setGender(patientDTO.getGender());
         patient.setTraits(patientDTO.getTraits());
 
         patient = patientRepository.save(patient);
@@ -249,7 +249,7 @@ public class PatientRestController {
         patient.setDiagnosis(patientDTO.getDiagnosis());
         patient.setHeight(patientDTO.getHeight());
         patient.setWeight(patientDTO.getWeight());
-        patient.setSex(patientDTO.getSex());
+        patient.setGender(patientDTO.getGender());
         patient.setTraits(patientDTO.getTraits());
 
         // 7. Salva e restituisci il DTO aggiornato

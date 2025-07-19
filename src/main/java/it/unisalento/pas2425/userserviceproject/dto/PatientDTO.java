@@ -1,6 +1,6 @@
 package it.unisalento.pas2425.userserviceproject.dto;
 
-import it.unisalento.pas2425.userserviceproject.domain.Sex;
+import it.unisalento.pas2425.userserviceproject.domain.Gender;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class PatientDTO {
     private double weight;
     private List<String> traits;
     private String diagnosis;
-    private Sex sex;
+    private Gender gender;
 
     // Getters and Setters
 
@@ -82,11 +82,11 @@ public class PatientDTO {
         this.diagnosis = diagnosis;
     }
 
-    public Sex getSex() {
-        return sex;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

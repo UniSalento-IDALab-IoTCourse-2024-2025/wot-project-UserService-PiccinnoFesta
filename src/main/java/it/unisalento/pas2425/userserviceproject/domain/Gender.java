@@ -1,5 +1,5 @@
 package it.unisalento.pas2425.userserviceproject.domain;
 
-public enum Sex {
+public enum Gender {
     MALE, FEMALE, OTHER
 }
