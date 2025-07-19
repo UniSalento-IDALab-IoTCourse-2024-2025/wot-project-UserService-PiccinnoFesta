@@ -133,6 +133,7 @@ public class PatientRestController {
     )
     public ResponseEntity<?> insert(@RequestBody PatientDTO patientDTO,@RequestHeader("Authorization") String jwtToken) throws UserNotFoundException {
 
+        System.out.println("inizio inserimento");
         Patient patient = new Patient();
 
         String jwt = jwtToken.startsWith("Bearer ") ? jwtToken.substring(7) : jwtToken;
