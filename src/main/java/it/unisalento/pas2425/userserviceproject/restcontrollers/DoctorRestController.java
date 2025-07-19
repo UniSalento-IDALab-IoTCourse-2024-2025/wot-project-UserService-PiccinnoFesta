@@ -62,6 +62,7 @@ public class DoctorRestController {
         doctorDTO.setSurname(doctor.getSurname());
         doctorDTO.setEmail(doctor.getEmail());
         doctorDTO.setLicense(doctor.getLicense());
+        doctorDTO.setPatientIds(doctor.getPatientIds());
 
 
         return ResponseEntity.ok(doctorDTO);

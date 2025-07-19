@@ -144,6 +144,8 @@ public class PatientRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
+        Doctor doctor = optionalDoctor.get();
+
         patient.setName(patientDTO.getName());
         patient.setSurname(patientDTO.getSurname());
         patient.setAge(patientDTO.getAge());
@@ -157,7 +159,10 @@ public class PatientRestController {
         patientDTO.setId(patient.getId()); //gioco per generare l'id e salvarlo
 
 
-        optionalDoctor.get().getPatientIds().add(patient.getId());
+        doctor.getPatientIds().add(patient.getId());
+
+        doctorRepository.save(doctor);
+
 
         return ResponseEntity.ok(patientDTO);
     }
