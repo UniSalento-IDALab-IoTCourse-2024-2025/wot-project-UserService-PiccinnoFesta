@@ -27,6 +27,16 @@ public class Patient {
 
     private Gender gender;
 
+    private boolean deviceInstalled;
+
+    public boolean isDeviceInstalled() {
+        return deviceInstalled;
+    }
+
+    public void setDeviceInstalled(boolean deviceInstalled) {
+        this.deviceInstalled = deviceInstalled;
+    }
+
     public String getId() {
         return id;
     }

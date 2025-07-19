@@ -15,6 +15,15 @@ public class PatientDTO {
     private List<String> traits;
     private String diagnosis;
     private Gender gender;
+    private boolean deviceInstalled;
+
+    public boolean isDeviceInstalled() {
+        return deviceInstalled;
+    }
+
+    public void setDeviceInstalled(boolean deviceInstalled) {
+        this.deviceInstalled = deviceInstalled;
+    }
 
     // Getters and Setters
 

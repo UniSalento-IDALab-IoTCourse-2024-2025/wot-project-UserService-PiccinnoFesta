@@ -72,6 +72,7 @@ public class PatientRestController {
             patientDTO.setHeight(patient.getHeight());
             patientDTO.setWeight(patient.getWeight());
             patientDTO.setDiagnosis(patient.getDiagnosis());
+            patientDTO.setDeviceInstalled(patient.isDeviceInstalled());
 
             list.add(patientDTO);
         }
@@ -122,6 +123,7 @@ public class PatientRestController {
         patientDTO.setHeight(patient.getHeight());
         patientDTO.setWeight(patient.getWeight());
         patientDTO.setDiagnosis(patient.getDiagnosis());
+        patientDTO.setDeviceInstalled(patient.isDeviceInstalled());
 
 
         return ResponseEntity.ok(patientDTO);
@@ -155,6 +157,7 @@ public class PatientRestController {
         patient.setWeight(patientDTO.getWeight());
         patient.setGender(patientDTO.getGender());
         patient.setTraits(patientDTO.getTraits());
+        patient.setDeviceInstalled(false);
 
         patient = patientRepository.save(patient);
         patientDTO.setId(patient.getId()); //gioco per generare l'id e salvarlo
@@ -252,6 +255,7 @@ public class PatientRestController {
         patient.setWeight(patientDTO.getWeight());
         patient.setGender(patientDTO.getGender());
         patient.setTraits(patientDTO.getTraits());
+        patient.setDeviceInstalled(patientDTO.isDeviceInstalled());
 
         // 7. Salva e restituisci il DTO aggiornato
         patient = patientRepository.save(patient);
