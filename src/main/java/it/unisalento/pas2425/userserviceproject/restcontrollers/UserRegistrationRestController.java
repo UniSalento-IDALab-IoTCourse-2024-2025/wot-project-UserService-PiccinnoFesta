@@ -64,6 +64,7 @@ public class UserRegistrationRestController {
         doctor.setEmail(doctorDTO.getEmail());
         doctor.setPassword(passwordEncoder().encode(doctorDTO.getPassword()));
         doctor.setLicense(doctorDTO.getLicense());
+        doctor.setPatientIds(new ArrayList<>());
 
         System.out.println("dentro la chiamata");
 
