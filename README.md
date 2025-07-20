@@ -42,6 +42,18 @@ L'interfaccia web, esposta da un microservizio sul cloud, e sviluppata con React
 - SmartWatchService: [Smartwatch]([https://esempio.com](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-smartwatch-PiccinnoFesta))
 - BLE server: [BLE Server]([http](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-BLEserver-PiccinnoFesta))
 - Frontend: [Frontend]([http](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-Frontend-PiccinnoFesta))
+
+
+## UserService
+È il punto d'ingresso per l'applicazione per l'utente finale. Permette a questo di registrarsi, e autenticarsi all'interno della piattaforma, producendo un JWT (JSON Web Token), che poi verrà riutilizzato per autorizzare tutte le successive richieste. Olre quindi al semplice login/signUp il microservizio espone:
+- Inserimento di un paziente nel database descrivendo una iniziale cartella clinica
+- Visualizzazione di una lista dei pazienti associati al proprio profilo
+- Eliminazione dei pazienti dalla propria lista di pazienti associati
+- Aggiornamento delle informazioni riguardo la cartella clinica del paziente
+- Aggironamento delle informazioni riguardo l'installazione del dispositivo nell'abitazione del paziente
+
+Questo microservizio interagisce strettamente col frontend, in quanto è proprio questo, tramite chiamate API RESTful (smistate da API GATEWAY), ad invocarne le funzionalità
+
   
 
 
